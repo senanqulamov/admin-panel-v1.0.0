@@ -24,9 +24,9 @@ function language($languageKey = null)
                 ->first();
 
             if ($data) {
-                return !empty($data->value) ? $data->value : '';
+                return !empty($data->value) ? $data->value : $languageKey;
             } else {
-                return '';
+                return $languageKey;
             }
 
 
@@ -435,26 +435,26 @@ function product_front_price($price,$specialPrice = '', $startDate = null, $endD
     }
 }
 
-function countries()
-{
-    // Minimal example, add more countries as needed
-    return [
-        [
-            'name' => 'Azerbaijan',
-            'iso_3166_1_alpha2' => 'AZ',
-        ],
-        [
-            'name' => 'Russia',
-            'iso_3166_1_alpha2' => 'RU',
-        ],
-        [
-            'name' => 'United Kingdom',
-            'iso_3166_1_alpha2' => 'GB',
-        ],
-        [
-            'name' => 'United States',
-            'iso_3166_1_alpha2' => 'US',
-        ],
-        // ... add more countries as needed
-    ];
-}
+//function countries()
+//{
+//    // Minimal example, add more countries as needed
+//    return [
+//        [
+//            'name' => 'Azerbaijan',
+//            'iso_3166_1_alpha2' => 'AZ',
+//        ],
+//        [
+//            'name' => 'Russia',
+//            'iso_3166_1_alpha2' => 'RU',
+//        ],
+//        [
+//            'name' => 'United Kingdom',
+//            'iso_3166_1_alpha2' => 'GB',
+//        ],
+//        [
+//            'name' => 'United States',
+//            'iso_3166_1_alpha2' => 'US',
+//        ],
+//        // ... add more countries as needed
+//    ];
+//}

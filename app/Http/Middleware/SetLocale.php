@@ -24,11 +24,15 @@ class SetLocale
         //Hal ahzikri dil
         $currentLang = App::getLocale();
 
+        //Hal hazirki dilin ID-si ve kodu
+        $languageID = null;
+        $languageCode = null;
+
 
         Cache::rememberForever('language-default', function () {
             $languageDefault = Languages::where('default', 1)
                 ->first();
-            return $languageDefault->code;
+            return $languageDefault ? $languageDefault->code : 'en';
         });
 
         //Istenilen dil
@@ -41,7 +45,6 @@ class SetLocale
             //default dili cache yazdim
             $reqLang = Cache::get('language-default');
         }
-
 
         if ($reqLang != $currentLang) {
             //Dil kantrolu
@@ -62,9 +65,10 @@ class SetLocale
 
         } else {
             $langControl = Languages::where('code', $currentLang)->first();
-            $languageID = $langControl->id;
-            $languageCode = $langControl->code;
-
+            if (isset($langControl->id)) {
+                $languageID = $langControl->id;
+                $languageCode = $langControl->code;
+            }
         }
 
 
@@ -107,8 +111,6 @@ class SetLocale
 
             }
         }
-
-
 
 
         $request->request->add(['allLanguages' => Cache::get('key-all-languages')]);

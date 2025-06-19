@@ -179,6 +179,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         \App\Services\Localization\LocalizationServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
 
 
@@ -236,7 +237,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'LanguageData' => \App\Services\LanguageData::class,
-        'LocalizationService' => \App\Services\Localization\LocalizationService::class
+        'LocalizationService' => \App\Services\Localization\LocalizationService::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
 
 

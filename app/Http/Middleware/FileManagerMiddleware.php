@@ -24,7 +24,7 @@ class FileManagerMiddleware
             ->first();
 
         //Istfiadecidirse yonlendir
-        $checkAdmin =  $user->roles[0]->id;
+        $checkAdmin =  $user->roles->isNotEmpty() ? $user->roles[0] : null;
         if($checkAdmin == 3){
               return redirect()->route('admin.permission');
         }

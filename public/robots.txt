@@ -1,0 +1,4 @@
+User-agent: *
+
+Host: https://www.orangepro.az/
+Sitemap: https://www.orangepro.az/sitemap.xml

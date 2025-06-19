@@ -1,0 +1,8 @@
+Cache keyleri
+--------------------------------
+Butun Statusu 1 olan keshdeki diller:
+-- key-all-languages
+Default keshdeki dil codu:
+-- language-default
+Default keshdeki dil ID:
+-- language-defaultID

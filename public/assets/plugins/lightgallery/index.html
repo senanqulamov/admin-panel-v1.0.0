@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Lightgallery Youtube Videos</title>
+  <link rel='stylesheet' href='css/lightgallery.css'
+  ><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="demo-gallery">
+    <ul id="video-gallery">
+
+      <!--  VIDEONU HAMSINDA ISYIFADE ETMEK OLAR YOUTUBE,VIMIO VE S.  -->
+      <li class="video" data-src="https://www.youtube.com/watch?v=IieuEVPDBHE"
+          data-poster="https://img.youtube.com/vi/IieuEVPDBHE/maxresdefault.jpg"
+      >
+        <a href="https://www.youtube.com/watch?v=IieuEVPDBHE">
+          <img class="img-responsive" src="https://img.youtube.com/vi/IieuEVPDBHE/0.jpg">
+          <div class="demo-gallery-poster">
+            <img src="youtube.png">
+          </div>
+        </a>
+      </li>
+
+      <li class="col-xs-6 col-sm-4 col-md-3"
+          data-src="demo/2.jpg"
+          data-responsive="img/1-375.jpg 375, img/1-480.jpg 480, img/1.jpg 800"
+          data-sub-html="<h4>Test Title</h4><p>Lorem ipsum dolor sit amet.</p>"
+          data-pinterest-text="Pin it1"
+          data-tweet-text="share on twitter 1"
+      >
+        <a href="">
+          <img class="img-responsive" src="demo/2-1.jpg" alt="Thumb-1">
+        </a>
+
+      </li>
+
+
+      <!--  IMAGE UCHUN ICHINDE AYARLAR VAR  -->
+<!--      <li class="col-xs-6 col-sm-4 col-md-3"-->
+<!--          data-src="demo/2.jpg"-->
+<!--          data-responsive="img/1-375.jpg 375, img/1-480.jpg 480, img/1.jpg 800"-->
+<!--          data-sub-html="<h4>Test Title</h4><p>Lorem ipsum dolor sit amet.</p>"-->
+<!--          data-pinterest-text="Pin it1"-->
+<!--          data-tweet-text="share on twitter 1"-->
+<!--      >-->
+<!--        <a href="">-->
+<!--          <img class="img-responsive" src="demo/2-1.jpg" alt="Thumb-1">-->
+<!--        </a>-->
+
+<!--      </li>-->
+
+
+    </ul>
+</div>
+<!-- partial -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!--<script src='https://cdn.jsdelivr.net/g/lightgallery,lg-autoplay,lg-fullscreen,lg-hash,lg-share,lg-thumbnail,lg-video,lg-zoom'></script>-->
+<script src="js/lightgallery-all.min.js"></script>
+<script src='js/picturefill.min.js'></script>
+<!--<script src='https://f.vimeocdn.com/js/froogaloop2.min.js'></script>-->
+<script  src="./script.js"></script>
+
+</body>
+</html>

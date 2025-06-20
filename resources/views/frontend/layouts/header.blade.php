@@ -23,8 +23,8 @@
     <!--  SOCICON  -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/socicon/css/socicon.min.css?ver=1.0.2') }}">
 
-    <link href="{{ asset('frontend/assets/css/style.css?ver=40') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/assets/css/responsive.css?ver=40') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/style.css?ver=').time() }}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/css/responsive.css?ver=').time() }}" rel="stylesheet">
 
     <link href="{{ asset('frontend/assets/css/custom.css?ver=40') }}" rel="stylesheet">
 
@@ -231,8 +231,6 @@
                     <div class="outer-box">
                         <div class="ui-btn-outer">
                             <!--  LANGUAGE START  -->
-
-
                             @foreach($allLanguages as $language)
                                 @if($currentLang == $language->code)
                                     <a class="langaugeColor" href="javascript:void(0)" role="button" id="dropdownLanguage"
@@ -243,7 +241,6 @@
                                     </a>
                                 @endif
                             @endforeach
-
                             <div class="dropdown-menu list" aria-labelledby="dropdownLanguage">
                                 @foreach($allLanguages as $language)
                                     @if($currentLang != $language->code)
@@ -258,7 +255,6 @@
                                     @endif
                                 @endforeach
                             </div>
-
                             <!--  LANGUAGE END  -->
                         </div>
 

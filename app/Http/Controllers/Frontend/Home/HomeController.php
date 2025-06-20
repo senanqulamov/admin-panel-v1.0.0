@@ -19,25 +19,28 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-
-
+    /**
+     * Display the home page with various sections.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
 
 
-
-        $slides = Slide::where('language_id', $request->languageID)
+        $slides = Slide::where('language_id', '1')
             ->where('status', 1)
             ->join('slides_translations', 'slides.id', '=', 'slides_translations.slide_id')
             ->orderBy('sort', 'ASC')
             ->get();
 
 
-        $services = Service::where('language_id', $request->languageID)
+        $services = Service::where('language_id', '1')
             ->where('status', 1)
             ->join('services_translations', 'services.id', '=', 'services_translations.service_id')
             ->orderBy('sort', 'ASC')
-            ->limit(3)
+            ->limit(8)
             ->get();
 
 
@@ -50,7 +53,6 @@ class HomeController extends Controller
             ->orderBy('galleries.id', 'DESC')
             ->limit(20)
             ->get();
-
 
 
         $partners = Partner::where('language_id', $request->languageID)
@@ -66,10 +68,6 @@ class HomeController extends Controller
             ->orderBy('posts.id', 'DESC')
             ->limit(3)
             ->get();
-
-
-
-
 
 
         return view('frontend.home.index', compact(
@@ -96,9 +94,9 @@ class HomeController extends Controller
         $text = $request->text;
 
 
-        if(isset($subject)){
+        if (isset($subject)) {
             $subject = $subject;
-        }else{
+        } else {
             $subject = language('general.title');
         }
 
@@ -133,7 +131,6 @@ class HomeController extends Controller
                 array_push($responseData, language('frontend.contact.form_error_email_invalid'));
             }
         }
-
 
 
         if (empty($data['mobil'])) {

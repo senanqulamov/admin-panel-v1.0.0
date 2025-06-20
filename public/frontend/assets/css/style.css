@@ -2711,7 +2711,7 @@ Sticky Header
     width: 100%;
     padding: 0px 0px;
     z-index: 99999;
-    background: #ffffff;
+    background: #212121;
     -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
@@ -2755,7 +2755,7 @@ Sticky Header
 }
 
 .sticky-header .main-menu .navigation > li > a {
-    color: #707070;
+    color: #fff;
 }
 
 .sticky-header .main-menu .navigation > li.current > a,

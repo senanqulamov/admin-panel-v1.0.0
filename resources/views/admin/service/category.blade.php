@@ -1,6 +1,6 @@
 @extends('admin.layouts.index')
 @section('title')
-    Xidmətlər katqoriya ({{ $category->name }})
+    İstiqamətlər katqoriya ({{ $category->name }})
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                 <!--begin::Page Heading-->
                 <div class="d-flex align-items-baseline flex-wrap mr-5">
                     <!--begin::Page Title-->
-                    <h5 class="text-dark font-weight-bold my-1 mr-5">Xidmətlər katqoriya</h5>
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">İstiqamətlər katqoriya</h5>
                     <!--end::Page Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
@@ -22,7 +22,7 @@
                             <a href="{{ route('admin.index') }}" class="text-muted">Panel</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.service.index') }}" class="text-muted">Xidmətlər</a>
+                            <a href="{{ route('admin.service.index') }}" class="text-muted">İstiqamətlər</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('admin.service.category.index') }}" class="text-muted">Kateqoriyalar</a>
@@ -47,7 +47,7 @@
             <div class="card card-custom gutter-b">
                 <div class="card-header">
                     <div class="card-title">
-                        <h3 class="card-label">Xidmətlər katqoriya ({{ $category->name }})</h3>
+                        <h3 class="card-label">İstiqamətlər katqoriya ({{ $category->name }})</h3>
                     </div>
                     <div class="card-toolbar">
                         <div class="card-title">

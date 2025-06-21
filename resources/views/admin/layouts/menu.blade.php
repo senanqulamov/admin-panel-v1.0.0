@@ -260,7 +260,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="menu-text">Xidmətlər</span>
+                        <span class="menu-text">İstiqamətlər</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
@@ -269,13 +269,13 @@
                             <li class="menu-item {{ Route::is(['admin.service.index', 'admin.service.edit', 'admin.service.search']) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                 <a href="{{ route('admin.service.index') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i>
-                                    <span class="menu-text">Xidmətlər</span>
+                                    <span class="menu-text">İstiqamətlər</span>
                                 </a>
                             </li>
                             <li class="menu-item {{ Route::is('admin.service.add') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                 <a href="{{ route('admin.service.add') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i>
-                                    <span class="menu-text">Xidmət əlavə et</span>
+                                    <span class="menu-text">İstiqamət əlavə et</span>
                                 </a>
                             </li>
                         </ul>

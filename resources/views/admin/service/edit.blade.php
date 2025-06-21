@@ -22,11 +22,11 @@
                         </li>
 
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.service.index') }}" class="text-muted">Xidmətlər</a>
+                            <a href="{{ route('admin.service.index') }}" class="text-muted">İstiqamətlər</a>
                         </li>
 
                         <li class="breadcrumb-item">
-                            Xidmət redaktə et
+                            İstiqamət redaktə et
                         </li>
 
                     </ul>

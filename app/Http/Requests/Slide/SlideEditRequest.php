@@ -19,9 +19,9 @@ class SlideEditRequest extends FormRequest
         return [
             /*   TITLE   */
             'title.*' => 'max:255',
-
-            /*  SUB TITLE   */
-            'sub_title.*' => 'max:255',
+//
+//            /*  SUB TITLE   */
+//            'sub_title.*' => 'max:255',
 
             /*   IMAGE   */
             'image.*' => 'required',

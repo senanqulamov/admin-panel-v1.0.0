@@ -6,34 +6,29 @@ $(function () {
         }
     });
 
-
-    /*   LANGUAGE CHANGE START   */
     $(document).on('click', '.language-change-request', function () {
 
         let changeLange = $(this).attr('data-language-code');
+        console.log(languageChange);
 
         $.ajax({
             url: languageChange,
-            data: {
-                fullUrl: fullUrl,
-                changeLange: changeLange
-            },
             method: 'POST',
-            dataType: 'JSON',
+            data: {
+                fullUrl: window.location.href,
+                currentLang: $('html').attr('lang'), // Update this to reflect your actual current lang
+                changeLange: $(this).attr('data-language-code')
+            },
             success: function (response) {
-                if (response.success == true) {
-                    //Yonlendir
+                if (response.success) {
                     window.location.href = response.data;
                 }
-
+            },
+            error: function (xhr) {
+                console.error(xhr.responseText);
             }
-
-        })
+        });
 
     })
-
-    /*   LANGUAGE CHANGE END   */
-
-
 
 });

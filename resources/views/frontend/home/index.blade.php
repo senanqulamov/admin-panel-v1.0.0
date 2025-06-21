@@ -17,7 +17,7 @@
                                 <i class="fa-solid fa-check-double"></i>
                                 <div>{!! $slide->title !!}</div>
                             </h1>
-                            <p class="sub-title">{!! $slide->sub_title !!}</p>
+                            <div class="sub-title">{!! $slide->sub_title !!}</div>
                             @if ($slide->button_text && $slide->button_link)
                                 <a href="{{ $slide->button_link }}" class="btn btn-primary">{{ $slide->button_text }}</a>
                             @endif
@@ -33,35 +33,262 @@
         </div>
         {{-- 4 banner ends --}}
 
+        <div id="about">
+            <h2>Biz Kimik!</h2>
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="image">
+                        <img src="https://hbngroup.az/image/cache/catalog/1_new_design/market_analysis_on_big_screen_570x267-570x267.webp" class="about-image"/>
+                    </div>
+                    <div class="content">
+                        <div class="title">BIAR GLOBAL</div>
+                        <div class="description">Peşəkar inkişafı dəstəkləyən və fərdlərə yeni bacarıqlar qazandıran innovativ bir təlim və məsləhət mərkəzidir. Biz təhsil, biznes inkişafı və insan
+                            resursları sahələrində ən
+                            son trendləri və metodologiyaları tətbiq edərək iştirakçılarımızın uğur qazanmasına dəstək oluruq.
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="image">
+                        <img src="https://hbngroup.az/image/cache/catalog/1_new_design/market_analysis_on_big_screen_570x267-570x267.webp" class="about-image"/>
+                    </div>
+                    <div class="content">
+                        <div class="title">BIAR GLOBAL</div>
+                        <div class="description">Peşəkar inkişafı dəstəkləyən və fərdlərə yeni bacarıqlar qazandıran innovativ bir təlim və məsləhət mərkəzidir. Biz təhsil, biznes inkişafı və insan
+                            resursları sahələrində ən
+                            son trendləri və metodologiyaları tətbiq edərək iştirakçılarımızın uğur qazanmasına dəstək oluruq.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{-- 8 banner services starts --}}
         <div class="services-container">
-            <h2 class="services-title">Xidmətlərimiz</h2>
+            <h2 class="services-title">İstiqamətlərimiz</h2>
             <div class="services">
                 @foreach ($services as $service)
                     <div class="service-item">
                         <div class="service-content">
                             <h2 class="service-title">
-                                <span>{{ $service->name }}</span>
                                 {!! $service->icon !!}
+                                <span>{{ $service->name }}</span>
+
                             </h2>
                             <p class="service-description">{{ $service->text }}</p>
                             @if ($service->button_text && $service->button_link)
-                                <a href="{{ $service->button_link }}"
-                                   class="btn btn-secondary">{{ $service->button_text }}</a>
+                                {{--                                <a href="{{ $service->button_link }}"--}}
+                                {{--                                   class="btn btn-secondary">{{ $service->button_text }}</a>--}}
                             @endif
                         </div>
-                        <img src="{{ $service->image }}" alt="{{ $service->title }}" class="service-image"/>
+                        {{--                        <img src="{{ $service->image }}" alt="{{ $service->title }}" class="service-image"/>--}}
                     </div>
                 @endforeach
             </div>
         </div>
         {{-- 8 banner services starts --}}
 
+
     </div>
 
 
     <style>
         .main.home {
+            .banner-container {
+                position: relative;
+                width: 100%;
+                height: 600px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                gap: 2px;
+
+                .hover-container {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .banner-item {
+                    width: calc(100% / 4 - 2px);
+                    height: 100%;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    @media (max-width: 1200px) {
+                        width: calc(100% / 3 - 2px);
+                        &:nth-child(4) {
+                            display: none;
+                        }
+                    }
+
+                    @media (max-width: 900px) {
+                        width: calc(100% / 2 - 2px);
+                        &:nth-child(3) {
+                            display: none;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        width: calc(100%);
+                        &:nth-child(2) {
+                            display: none;
+                        }
+                    }
+
+                    &:hover {
+                        .container .banner-content {
+                            .title {
+                                transform: translateY(0);
+                                height: min-content;
+                                margin-bottom: 2%;
+                            }
+
+                            .sub-title {
+                                transform: translateY(0);
+                                height: auto;
+                                margin-bottom: 8%;
+                                font-weight: 500;
+                                font-size: 0.7rem;
+                                line-height: 1.5;
+                            }
+                        }
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.5);
+                        z-index: 1;
+                    }
+
+                    .container {
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: end;
+                        flex-direction: column;
+
+                        .banner-content {
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            align-items: start;
+
+                            .title {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 15px;
+                                font-size: 1.5rem;
+                                color: #fff;
+                                margin-bottom: 100px;
+                                transform: translateY(100%);
+                                transition: 800ms;
+                            }
+
+                            .sub-title {
+                                font-size: 1rem;
+                                color: #fff;
+                                /*margin-bottom: -50%;*/
+                                transform: translateY(100%) scaleY(0);
+                                height: 1%;
+                                overflow: hidden;
+                                transition: 200ms;
+                                line-height: 5;
+                                /*display: none;*/
+                            }
+                        }
+
+                        /**/
+
+                        img {
+                            display: none !important;
+                        }
+
+
+                    }
+                }
+
+
+            }
+
+            #about {
+                padding: 60px 0px;
+                background-color: #212121;
+
+                h2 {
+                    font-size: 2rem;
+                    text-align: center;
+                    margin-bottom: 60px;
+                    color: #fff;
+                }
+
+                .about-container {
+                    width: 100%;
+                    display: flex;
+                    gap: 20px;
+                    justify-content: center;
+
+                    .about-content {
+                        width: calc(100% / 2 - 20px);
+                        display: flex;
+                        gap: 20px;
+                        align-items: start;
+                        justify-content: center;
+                        padding: 20px;
+                        border-radius: 10px;
+
+                        .image {
+                            width: 50%;
+                            height: 200px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 10px;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .content {
+                            width: 50%;
+                            text-align: left;
+
+                            .title {
+                                font-size: 1.5rem;
+                                font-weight: bold;
+                                margin-bottom: 10px;
+                                color: #fff;
+                            }
+
+                            .description {
+                                font-size: 0.9rem;
+                                line-height: 1.2;
+                                text-align: justify;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
 
             .services-container {
                 width: 100%;
@@ -84,7 +311,6 @@
                     justify-content: start;
                     gap: 25px;
                     width: 100%;
-                    max-width: 1200px;
 
 
                     .service-item {
@@ -94,7 +320,51 @@
                         overflow: hidden;
                         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                         position: relative;
-                        height: 340px;
+                        height: auto;
+                        border: 2px solid #007bff;
+                        padding: 20px;
+
+                        .service-content {
+                            padding: 20px;
+                            z-index: 2;
+                            background: #fff;
+                            border-radius: 15px;
+                            transition: 500ms;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            height: 100%;
+
+                            .service-title {
+                                font-size: 0.9rem;
+                                margin-bottom: 10px;
+                                text-transform: uppercase;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                gap: 20px;
+
+                                i {
+                                    font-size: 1.5rem;
+                                    color: #007bff;
+                                }
+                            }
+
+                            .service-description {
+                                font-size: 0.65rem;
+                                color: #6c757d;
+                                overflow: hidden;
+                                line-height: 1.5;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 4; /* Number of lines to show */
+                                -webkit-box-orient: vertical;
+                                transition: 500ms;
+
+                            }
+                        }
 
                         @media (max-width: 1100px) {
                             width: calc(100% / 3 - 20px);
@@ -107,194 +377,6 @@
                         @media (max-width: 768px) {
                             width: calc(100%);
                         }
-
-
-                        &:hover {
-                            .service-content {
-                                transform: scale(1) translateY(0) translateX(0);
-                                height: min-content;
-                            }
-
-                            .service-image {
-                                transform: scale(1.3);
-                                transition: 500ms;
-                            }
-                        }
-                    }
-
-                    .service-content {
-                        padding: 20px;
-                        z-index: 2;
-                        position: absolute;
-                        /*top: 0;*/
-                        left: 20px;
-                        right: 20px;
-                        bottom: 20px;
-                        background: #fff;
-                        /*max-width: 90%;*/
-                        /*height: 80px;*/
-                        border-radius: 15px;
-                        transform: scale(0) translateY(100%) translateX(100%);
-                        transition: 500ms;
-
-
-                        .service-title {
-                            font-size: 1rem;
-                            margin-bottom: 10px;
-                            text-transform: uppercase;
-                            display: flex;
-                            justify-content: space-between;
-
-                            i {
-                                font-size: 1.5rem;
-                                color: #007bff;
-                            }
-                        }
-
-                        .service-description {
-                            font-size: 0.8rem;
-                            color: #6c757d;
-                            margin-bottom: 20px;
-                            /*max-height: 60px;*/
-                            overflow: hidden;
-                            line-height: 1.5;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 4; /* Number of lines to show */
-                            -webkit-box-orient: vertical;
-                            transition: 500ms;
-
-                        }
-                    }
-
-                    .service-image {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        position: relative;
-                        transition: 500ms;
-                    }
-                }
-            }
-        }
-
-        .banner-container {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-
-            .hover-container {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .banner-item {
-                width: calc(100% / 4 - 2px);
-                height: 100%;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                @media (max-width: 1200px) {
-                    width: calc(100% / 3 - 2px);
-                    &:nth-child(4) {
-                        display: none;
-                    }
-                }
-
-                @media (max-width: 900px) {
-                    width: calc(100% / 2 - 2px);
-                    &:nth-child(3) {
-                        display: none;
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    width: calc(100%);
-                    &:nth-child(2) {
-                        display: none;
-                    }
-                }
-
-                &:hover {
-                    .container .banner-content {
-                        .title {
-                            transform: translateY(0);
-                            height: auto;
-                            margin-bottom: 20px;
-                        }
-
-                        .sub-title {
-                            transform: translateY(0);
-                            height: auto;
-                        }
-                    }
-                }
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0.5);
-                    z-index: 1;
-                }
-
-                .container {
-                    z-index: 2;
-                    width: 100%;
-                    height: 100%;
-
-                    .banner-content {
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-end;
-                        align-items: start;
-
-                        .title {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
-                            font-size: 1.5rem;
-                            color: #fff;
-                            margin-bottom: 80px;
-                            transform: translateY(100%);
-                            transition: 500ms;
-                        }
-
-                        .sub-title {
-                            font-size: 1rem;
-                            color: #fff;
-                            margin-bottom: 20px;
-                            transform: translateY(200%);
-                            overflow: hidden;
-                            transition: 500ms;
-                        }
-                    }
-
-                    /**/
-
-                    img {
-                        display: none !important;
                     }
 
 
@@ -302,7 +384,7 @@
             }
         }
 
-        }
+
     </style>
 
 @endsection

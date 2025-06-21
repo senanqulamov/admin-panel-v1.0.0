@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Cache;
 function language($languageKey = null)
 {
 
-
     if (!empty($languageKey)) {
 
         $languageID = app('request')->languageID;
         $currentLang = app('request')->currentLang;
 
+        if($currentLang == null) {
+            $parameters = app('request')->request->all();
+            $currentLang = $parameters['currentLang'];
+            $languageID = $parameters['languageID'];
+        }
 
         return Cache::rememberForever($currentLang . '.' . $languageKey, function () use ($languageKey, $languageID, $currentLang) {
 
@@ -270,7 +274,7 @@ function uniqueSlug($model, $title = '')
     return $newSlug;
 }
 
-function getTranslateData($array,$languageID,$field)
+function getTranslateData($array, $languageID, $field)
 {
     /**
      * Bu function databaseden gelen datalarin blade
@@ -285,7 +289,7 @@ function getTranslateData($array,$languageID,$field)
 
 }
 
-function getTranslateAttributeData($array,$languageID,$attributeID,$field)
+function getTranslateAttributeData($array, $languageID, $attributeID, $field)
 {
     /**
      * Bu function databaseden gelen datalarin blade
@@ -294,7 +298,7 @@ function getTranslateAttributeData($array,$languageID,$attributeID,$field)
 
 
     foreach ($array as $tranlationData):
-        if($attributeID == $tranlationData->attribute_id){
+        if ($attributeID == $tranlationData->attribute_id) {
             if ($tranlationData->language_id == $languageID):
                 return $tranlationData->$field;
             endif;
@@ -304,7 +308,7 @@ function getTranslateAttributeData($array,$languageID,$attributeID,$field)
 
 }
 
-function getTranslateOptionData($array,$languageID,$attributeID,$field)
+function getTranslateOptionData($array, $languageID, $attributeID, $field)
 {
     /**
      * Bu function databaseden gelen datalarin blade
@@ -313,7 +317,7 @@ function getTranslateOptionData($array,$languageID,$attributeID,$field)
 
 
     foreach ($array as $tranlationData):
-        if($attributeID == $tranlationData->option_value_id){
+        if ($attributeID == $tranlationData->option_value_id) {
             if ($tranlationData->language_id == $languageID):
                 return $tranlationData->$field;
             endif;
@@ -323,12 +327,13 @@ function getTranslateOptionData($array,$languageID,$attributeID,$field)
 
 }
 
-function updateDate($updateDate,$translateUpdateDate){
+function updateDate($updateDate, $translateUpdateDate)
+{
     $updateAt = '';
     foreach ($translateUpdateDate as $item):
-        if($updateDate > $item->updated_at){
+        if ($updateDate > $item->updated_at) {
             $updateAt = $updateDate;
-        }else{
+        } else {
             $updateAt = $item->updated_at;
         }
     endforeach;
@@ -337,11 +342,12 @@ function updateDate($updateDate,$translateUpdateDate){
 
 }
 
-function str_limit($text,$limit = 100,$delimiter = '...'){
+function str_limit($text, $limit = 100, $delimiter = '...')
+{
 
-    $textLan  = mb_strlen($text);
-    if($textLan > $limit){
-        $text = mb_substr($text,0,$limit).' '.$delimiter;
+    $textLan = mb_strlen($text);
+    if ($textLan > $limit) {
+        $text = mb_substr($text, 0, $limit) . ' ' . $delimiter;
     }
 
 
@@ -350,7 +356,8 @@ function str_limit($text,$limit = 100,$delimiter = '...'){
 }
 
 
-function generateRandomString($length = 10) {
+function generateRandomString($length = 10)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -360,76 +367,78 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
-function product_price($price,$specialPrice = '', $startDate = '', $endDate = ''){
-    $manat = "<img style='width: 11px;  margin-top: -3px;' src='".asset('assets/images/azn_back.svg')."'>";
+function product_price($price, $specialPrice = '', $startDate = '', $endDate = '')
+{
+    $manat = "<img style='width: 11px;  margin-top: -3px;' src='" . asset('assets/images/azn_back.svg') . "'>";
 
-    if(empty($specialPrice)){
-        if(!empty($price)){
-            return "<div class='product-price'>".$price . " ".$manat."</div>";
-        }else{
+    if (empty($specialPrice)) {
+        if (!empty($price)) {
+            return "<div class='product-price'>" . $price . " " . $manat . "</div>";
+        } else {
             return '';
         }
-    }else{
+    } else {
 
 
-        if(!empty($startDate) && empty($endDate) && $startDate < date('Y-m-d H:i:s')){
-            return "<div class='product-price'>".$specialPrice . " ".$manat." <sup><del>( ".$price . " ".$manat.")</del></sup></div>";
+        if (!empty($startDate) && empty($endDate) && $startDate < date('Y-m-d H:i:s')) {
+            return "<div class='product-price'>" . $specialPrice . " " . $manat . " <sup><del>( " . $price . " " . $manat . ")</del></sup></div>";
         }
 
-        if(empty($startDate) && !empty($endDate) && $endDate > date('Y-m-d H:i:s')){
-            return "<div class='product-price'>".$specialPrice . " ".$manat." <sup><del>( ".$price . " ".$manat.")</del></sup></div>";
+        if (empty($startDate) && !empty($endDate) && $endDate > date('Y-m-d H:i:s')) {
+            return "<div class='product-price'>" . $specialPrice . " " . $manat . " <sup><del>( " . $price . " " . $manat . ")</del></sup></div>";
         }
 
-        if(!empty($startDate) && !empty($endDate) &&  $startDate < date('Y-m-d H:i:s')  && $endDate > date('Y-m-d H:i:s')){
-            return "<div class='product-price'>".$specialPrice . " ".$manat." <sup><del>( ".$price . " ".$manat.")</del></sup></div>";
-        }
-
-
-        if(empty($startDate) && empty($endDate) ){
-            return "<div class='product-price'>".$specialPrice . " ".$manat." <sup><del>( ".$price . " ".$manat.")</del></sup></div>";
+        if (!empty($startDate) && !empty($endDate) && $startDate < date('Y-m-d H:i:s') && $endDate > date('Y-m-d H:i:s')) {
+            return "<div class='product-price'>" . $specialPrice . " " . $manat . " <sup><del>( " . $price . " " . $manat . ")</del></sup></div>";
         }
 
 
-        return "<div class='product-price'>".$price . " ".$manat."</div>";
+        if (empty($startDate) && empty($endDate)) {
+            return "<div class='product-price'>" . $specialPrice . " " . $manat . " <sup><del>( " . $price . " " . $manat . ")</del></sup></div>";
+        }
+
+
+        return "<div class='product-price'>" . $price . " " . $manat . "</div>";
 
     }
 }
 
 
-function product_front_price($price,$specialPrice = '', $startDate = null, $endDate = null){
+function product_front_price($price, $specialPrice = '', $startDate = null, $endDate = null)
+{
 
-    $manat = "<img class='price__size' src='".asset('assets/images/azn.svg')."'>";
+    $manat = "<img class='price__size' src='" . asset('assets/images/azn.svg') . "'>";
 
-    if(empty($specialPrice)){
-        if(!empty($price)){
-            return "<span class='sales'><span class='value'>".$price . " ".$manat."</span></span>";
-        }else{
+    if (empty($specialPrice)) {
+        if (!empty($price)) {
+            return "<span class='sales'><span class='value'>" . $price . " " . $manat . "</span></span>";
+        } else {
             return '';
         }
-    }else{
+    } else {
 
-        if(!empty($startDate) && empty($endDate) && $startDate < date('Y-m-d H:i:s')){
-            return "<span class='sales mr-0'><span class='value mr-0'>".$specialPrice . " ".$manat."</span></span>
-<span class='strike-through list'><span class='value'>".$price . " ".$manat."</span></span>";
+        if (!empty($startDate) && empty($endDate) && $startDate < date('Y-m-d H:i:s')) {
+            return "<span class='sales mr-0'><span class='value mr-0'>" . $specialPrice . " " . $manat . "</span></span>
+<span class='strike-through list'><span class='value'>" . $price . " " . $manat . "</span></span>";
         }
 
-        if(empty($startDate) && !empty($endDate) && $endDate > date('Y-m-d H:i:s')){
-            return "<span class='sales mr-0'><span class='value mr-0'>".$specialPrice . " ".$manat."</span></span>
-<span class='strike-through list'><span class='value'>".$price . " ".$manat."</span></span>";
+        if (empty($startDate) && !empty($endDate) && $endDate > date('Y-m-d H:i:s')) {
+            return "<span class='sales mr-0'><span class='value mr-0'>" . $specialPrice . " " . $manat . "</span></span>
+<span class='strike-through list'><span class='value'>" . $price . " " . $manat . "</span></span>";
         }
 
-        if(!empty($startDate) && !empty($endDate) &&  $startDate < date('Y-m-d H:i:s')  && $endDate > date('Y-m-d H:i:s')){
-            return "<span class='sales mr-0'><span class='value mr-0'>".$specialPrice . " ".$manat."</span></span>
-<span class='strike-through list'><span class='value'>".$price . " ".$manat."</span></span>";
+        if (!empty($startDate) && !empty($endDate) && $startDate < date('Y-m-d H:i:s') && $endDate > date('Y-m-d H:i:s')) {
+            return "<span class='sales mr-0'><span class='value mr-0'>" . $specialPrice . " " . $manat . "</span></span>
+<span class='strike-through list'><span class='value'>" . $price . " " . $manat . "</span></span>";
         }
 
 
-        if(empty($startDate) && empty($endDate)){
-            return "<span class='sales mr-0'><span class='value mr-0'>".$specialPrice . " ".$manat."</span></span>
-<span class='strike-through list'><span class='value'>".$price . " ".$manat."</span></span>";
+        if (empty($startDate) && empty($endDate)) {
+            return "<span class='sales mr-0'><span class='value mr-0'>" . $specialPrice . " " . $manat . "</span></span>
+<span class='strike-through list'><span class='value'>" . $price . " " . $manat . "</span></span>";
         }
 
-        return "<span class='sales'><span class='value'>".$price . " ".$manat."</span></span>";
+        return "<span class='sales'><span class='value'>" . $price . " " . $manat . "</span></span>";
 
 
     }

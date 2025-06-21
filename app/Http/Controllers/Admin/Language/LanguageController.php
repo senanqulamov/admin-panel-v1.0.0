@@ -457,7 +457,7 @@ class LanguageController extends Controller
             Languages::where('id', $id)->delete();
         endforeach;
 
-        
+
         //BU dilleri keshden sildim frontda yeniden keshe yazsin deye
 //        Cache::forget('key-all-languages');
         Artisan::call('optimize:clear');
